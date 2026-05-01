@@ -1,0 +1,54 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── Secrets / credentials — NEVER commit these ───────────────────────────────
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+selfsigned.crt
+selfsigned.key
+service-account*.json
+firebase-adminsdk*.json
+kaggle.json
+*credentials*.json
+*secret*.json
+
+# ── Trained ML model files (large binaries — use the zip in public/ instead) ─
+ml_models/*.pkl
+*.pkl
+*.joblib
+
+# ── OS / editor artefacts ─────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.suo
+*.user
+
+# ── Firebase local state ──────────────────────────────────────────────────────
+.firebase/
+.firebaserc.local
+
+# ── Node (if ever used) ───────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*

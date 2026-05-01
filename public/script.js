@@ -7,16 +7,9 @@ import { initializeApp }        from "https://www.gstatic.com/firebasejs/11.6.0/
 import { getFirestore, collection, addDoc, serverTimestamp }
                                 from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+import { firebaseConfig }       from "/firebase-config.js";
 
 // ── Firebase init ────────────────────────────────────────────────────────────
-const firebaseConfig = {
-    apiKey:            "AIzaSyB_oPszXykBcPw6_sbKBS6NFJ7ObPWAe3I",
-    authDomain:        "pulseml-ai.firebaseapp.com",
-    projectId:         "pulseml-ai",
-    storageBucket:     "pulseml-ai.firebasestorage.app",
-    messagingSenderId: "377229468004",
-    appId:             "1:377229468004:web:b16124234804502c135a71",
-};
 const fbApp = initializeApp(firebaseConfig);
 const db    = getFirestore(fbApp);
 const auth  = getAuth(fbApp);
