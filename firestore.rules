@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Anyone (anonymous or not) can write a new assessment
+    // Nobody can read others' assessments (privacy)
+    match /assessments/{docId} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+
+  }
+}
