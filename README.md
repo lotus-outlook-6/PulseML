@@ -65,38 +65,20 @@ The Blynk mobile dashboard provides a real-time visualization of the sensor stre
 
 The following table documents every screen state of the PulseML web application in the order a user would encounter them during a full session. Scroll the screenshot row horizontally to browse all screens.
 
-| Sl. No. | Screen | Description |
-|:---:|---|---|
-| 1 | **Homepage** | The main diagnostic interface. On load, the header status pill runs a 3–5 second animated boot sequence: Red (*Initialising*) → Yellow (*Loading model*) → Green (*Model Active*). The user enters Heart Rate in BPM and SpO₂ as a percentage, then clicks **Analyze Vitals**. |
-| 2 | **AI Processing Overlay** | After form submission, a full-screen animated overlay appears and walks through four pipeline stages — *Reading vitals*, *Pre-processing data*, *Running AI model*, and *Interpreting results* — over a 4.2-second window with a progress bar and animated text transitions. |
-| 3 | **Normal Risk Result** | When both vitals are within healthy ranges (HR: 60–100 BPM, SpO₂: 95–100%), the model classifies the reading as **Normal**. The result card displays the risk label in green, an AI confidence ring showing prediction certainty, and personalised advice to continue regular monitoring. |
-| 4 | **High Risk Result** | Critically abnormal readings (e.g. HR: 145 BPM, SpO₂: 88%) are classified as **High** risk. The result card renders in red, the advice banner displays an emergency warning, and the hospital finder modal is automatically triggered 800 ms after the result is shown. |
-| 5 | **Model Architecture View** | Displays the underlying machine learning model details — a Random Forest Classifier with 100 estimators trained on 60,000 patient records. The full classification report confirms 100% precision, recall, and F1-score across all three risk classes on the 12,000-record test set. |
-| 6 | **Assessment History** | The history panel stores up to 10 recent assessments in the browser's `localStorage`. Each entry shows the risk label, raw vitals (BPM and SpO₂), AI confidence percentage, and a relative timestamp. Clicking any entry re-renders the full result — including re-triggering the hospital modal for High-risk entries. |
-| 7 | **Emergency Detected Modal** | This modal is automatically displayed on any High-risk prediction. It informs the user that their vitals indicate a high-risk condition and offers two actions: **Find Nearby Hospitals** (initiates the location flow) or **Not Now** (dismisses the modal). |
-| 8 | **Detecting Location** | When the user selects *Find Nearby Hospitals*, the app calls the browser's Geolocation API. An animated spinner is displayed while waiting for the GPS response. If the user denies location access, the flow falls back automatically to the manual location entry screen. |
-| 9 | **Manual Location Entry** | If GPS access is denied or the device does not support geolocation, the user is prompted to type a location manually — such as a city name or street address (e.g. *Jagiroad, India*). The input is forwarded to the OpenStreetMap Nominatim geocoder to resolve coordinates. |
-| 10 | **Searching Hospitals** | Once coordinates are resolved (via GPS or geocoding), the app queries the OpenStreetMap Overpass API for hospitals, clinics, health centres, and doctors within a 30 km radius (expanding to 50 km if no results are found). A spinner is shown during the live API call. |
-| 11 | **Hospital Results List** | The top 3 nearest medical facilities are displayed, sorted by Haversine distance from the user's location. Each card includes the facility name, distance, a **Get Directions** button (deep-links to Google Maps), and a **Call** button if a phone number is available in OpenStreetMap. The emergency helpline **112** is pinned at the bottom. |
-| 12 | **Emergency Call 112** | The national emergency helpline number **112** is persistently displayed on the hospital results screen. On mobile devices, the **Call 112** button directly initiates a phone call. This screen also appears in the *No Hospitals Found* fallback state when no facilities are detected within the maximum search radius. |
-
-<!-- Horizontal scrollable screenshot carousel -->
-<table>
-<tr>
-<td align="center"><img src="./public/images/PulseML_homepage.png" width="200"/><br/><sub>1 · Homepage</sub></td>
-<td align="center"><img src="./public/images/PulseML_processing.png" width="200"/><br/><sub>2 · Processing Overlay</sub></td>
-<td align="center"><img src="./public/images/PulseML_normalresult.png" width="200"/><br/><sub>3 · Normal Result</sub></td>
-<td align="center"><img src="./public/images/PulseML_highrisk.png" width="200"/><br/><sub>4 · High Risk Result</sub></td>
-<td align="center"><img src="./public/images/PulseML_model.png" width="200"/><br/><sub>5 · Model View</sub></td>
-<td align="center"><img src="./public/images/PulseML_history.png" width="200"/><br/><sub>6 · History</sub></td>
-<td align="center"><img src="./public/images/PulseML_EmergencyDetected.png" width="200"/><br/><sub>7 · Emergency Modal</sub></td>
-<td align="center"><img src="./public/images/PulseML_detecinglocation.png" width="200"/><br/><sub>8 · Detecting Location</sub></td>
-<td align="center"><img src="./public/images/PulseML_enterlocation.png" width="200"/><br/><sub>9 · Manual Location</sub></td>
-<td align="center"><img src="./public/images/PulseML_searching%20hospital.png" width="200"/><br/><sub>10 · Searching</sub></td>
-<td align="center"><img src="./public/images/PulseML_hospitalslist.png" width="200"/><br/><sub>11 · Hospital List</sub></td>
-<td align="center"><img src="./public/images/PulseML_112.png" width="200"/><br/><sub>12 · Call 112</sub></td>
-</tr>
-</table>
+| Sl. No. | Screen | Description | Screenshot |
+|:---:|---|---|:---:|
+| 1 | **Homepage** | The main diagnostic interface. On load, the header status pill runs a 3–5 second animated boot sequence: Red (*Initialising*) → Yellow (*Loading model*) → Green (*Model Active*). The user enters Heart Rate in BPM and SpO₂ as a percentage, then clicks **Analyze Vitals**. | ![Homepage](./public/images/PulseML_homepage.png) |
+| 2 | **AI Processing Overlay** | After form submission, a full-screen animated overlay appears and walks through four pipeline stages — *Reading vitals*, *Pre-processing data*, *Running AI model*, and *Interpreting results* — over a 4.2-second window with a progress bar and animated text transitions. | ![Processing](./public/images/PulseML_processing.png) |
+| 3 | **Normal Risk Result** | When both vitals are within healthy ranges (HR: 60–100 BPM, SpO₂: 95–100%), the model classifies the reading as **Normal**. The result card displays the risk label in green, an AI confidence ring showing prediction certainty, and personalised advice to continue regular monitoring. | ![Normal Result](./public/images/PulseML_normalresult.png) |
+| 4 | **High Risk Result** | Critically abnormal readings (e.g. HR: 145 BPM, SpO₂: 88%) are classified as **High** risk. The result card renders in red, the advice banner displays an emergency warning, and the hospital finder modal is automatically triggered 800 ms after the result is shown. | ![High Risk](./public/images/PulseML_highrisk.png) |
+| 5 | **Model Architecture View** | Displays the underlying machine learning model details — a Random Forest Classifier with 100 estimators trained on 60,000 patient records. The full classification report confirms 100% precision, recall, and F1-score across all three risk classes on the 12,000-record test set. | ![Model Info](./public/images/PulseML_model.png) |
+| 6 | **Assessment History** | The history panel stores up to 10 recent assessments in the browser's `localStorage`. Each entry shows the risk label, raw vitals (BPM and SpO₂), AI confidence percentage, and a relative timestamp. Clicking any entry re-renders the full result — including re-triggering the hospital modal for High-risk entries. | ![History](./public/images/PulseML_history.png) |
+| 7 | **Emergency Detected Modal** | This modal is automatically displayed on any High-risk prediction. It informs the user that their vitals indicate a high-risk condition and offers two actions: **Find Nearby Hospitals** (initiates the location flow) or **Not Now** (dismisses the modal). | ![Emergency Modal](./public/images/PulseML_EmergencyDetected.png) |
+| 8 | **Detecting Location** | When the user selects *Find Nearby Hospitals*, the app calls the browser's Geolocation API. An animated spinner is displayed while waiting for the GPS response. If the user denies location access, the flow falls back automatically to the manual location entry screen. | ![Detecting Location](./public/images/PulseML_detecinglocation.png) |
+| 9 | **Manual Location Entry** | If GPS access is denied or the device does not support geolocation, the user is prompted to type a location manually — such as a city name or street address (e.g. *Jagiroad, India*). The input is forwarded to the OpenStreetMap Nominatim geocoder to resolve coordinates. | ![Manual Location](./public/images/PulseML_enterlocation.png) |
+| 10 | **Searching Hospitals** | Once coordinates are resolved (via GPS or geocoding), the app queries the OpenStreetMap Overpass API for hospitals, clinics, health centres, and doctors within a 30 km radius (expanding to 50 km if no results are found). A spinner is shown during the live API call. | ![Searching](./public/images/PulseML_searching%20hospital.png) |
+| 11 | **Hospital Results List** | The top 3 nearest medical facilities are displayed, sorted by Haversine distance from the user's location. Each card includes the facility name, distance, a **Get Directions** button (deep-links to Google Maps), and a **Call** button if a phone number is available in OpenStreetMap. The emergency helpline **112** is pinned at the bottom. | ![Hospital List](./public/images/PulseML_hospitalslist.png) |
+| 12 | **Emergency Call 112** | The national emergency helpline number **112** is persistently displayed on the hospital results screen. On mobile devices, the **Call 112** button directly initiates a phone call. This screen also appears in the *No Hospitals Found* fallback state when no facilities are detected within the maximum search radius. | ![Call 112](./public/images/PulseML_112.png) |
 
 ---
 
